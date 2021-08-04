@@ -6,77 +6,31 @@ import 'package:myapp/star_stateful.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  Widget _buildTextRow() {
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "some lake in Europe",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
-                ),
-              ),
-              Text(
-                "a description about the lake",
-                style: TextStyle(
-                  fontSize: 16.0,
-                  color: Colors.grey,
-                ),
-              ),
-            ],
-          ),
-        ),
-        StarStateful(starColor: Colors.blue, count: 42),
-      ],
+  Widget _buildImage() {
+    return Image.asset(
+      "assets/portait.jpg",
+      width: double.infinity,
+      height: 300,
+      fit: BoxFit.cover,
     );
   }
 
-  Widget _buildIconRow() {
-    final textStyle = TextStyle(color: Colors.blue);
-
+  Widget _buildButtonBar() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20.0,
+        vertical: 6.0,
+      ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
+          Icon(Icons.arrow_back_ios),
+          Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                Icons.phone,
-                color: Colors.blue,
-              ),
-              Text(
-                "CALL",
-                style: textStyle,
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Icon(
-                Icons.router,
-                color: Colors.blue,
-              ),
-              Text(
-                "ROUTE",
-                style: textStyle,
-              ),
-            ],
-          ),
-          Column(
-            children: [
-              Icon(
-                Icons.share,
-                color: Colors.blue,
-              ),
-              Text(
-                "SHARE",
-                style: textStyle,
-              ),
+              Icon(Icons.edit),
+              SizedBox(width: 10.0),
+              Icon(Icons.menu),
             ],
           )
         ],
@@ -84,48 +38,45 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Widget _buildText() {
-    return Text(
-      "Proident enim et duis qui excepteur commodo amet cillum velit velit ullamco. Adipisicing esse officia ullamco consectetur ex. Reprehenderit proident enim deserunt laboris. Dolor consequat occaecat tempor qui deserunt sint sint nulla commodo laboris deserunt sunt excepteur laboris",
+  Widget _buildBottomText() {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 10.0),
+        child: Text(
+          "Ali Connors",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 22.0,
+          ),
+        ),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final colors = <Color>[
-      Colors.black,
-      Colors.red,
-      Colors.yellow,
-      Colors.green,
-      Colors.purple,
-      Colors.cyan,
-      Colors.orange,
-      Colors.brown,
-      Colors.black,
-      Colors.red,
-    ];
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
+      home: SafeArea(
+        child: Scaffold(
           body: Column(
-        children: [
-          Image.asset("assets/lake.jpg"),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 30.0,
-              vertical: 20.0,
-            ),
-            child: Column(
-              children: [
-                _buildTextRow(),
-                _buildIconRow(),
-                _buildText(),
-              ],
-            ),
-          )
-        ],
-      )),
+            children: [
+              SizedBox(
+                height: 300.0,
+                child: Stack(
+                  children: [
+                    _buildImage(),
+                    _buildButtonBar(),
+                    _buildBottomText(),
+                  ],
+                ),
+              ),
+              StarStateful(true, 45),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
