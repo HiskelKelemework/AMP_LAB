@@ -1,25 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/avatar.dart';
-import 'package:myapp/star.dart';
-import 'package:myapp/star_interactive.dart';
 
-void main() => runApp(MyApp());
+class Avatar extends StatelessWidget {
+  final String imageAssetUrl;
+  Avatar(this.imageAssetUrl);
 
-class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: StarInteractive(45, true),
-        ),
-      ),
-    );
-  }
-
-  Widget buildAvatar(String imageAssetUrl) {
     return SizedBox(
       width: 200.0,
       height: 200.0,

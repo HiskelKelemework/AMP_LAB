@@ -1,30 +1,27 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class StarStateful extends StatefulWidget {
-  final Color starColor;
-  final int count;
+class StarInteractive extends StatefulWidget {
+  final int starCount;
+  final bool selected;
+  final age = 55;
 
-  const StarStateful({
-    required this.starColor,
-    required this.count,
-  });
+  StarInteractive(this.starCount, this.selected);
 
   @override
-  _StarStatefulState createState() {
-    return _StarStatefulState();
+  _StarInteractiveState createState() {
+    return _StarInteractiveState();
   }
 }
 
-class _StarStatefulState extends State<StarStateful> {
-  late Color starColor;
-  late int count;
-  bool selected = false;
+class _StarInteractiveState extends State<StarInteractive> {
+  late int starCount;
+  late bool selected;
 
   @override
   void initState() {
-    starColor = widget.starColor;
-    count = widget.count;
+    starCount = widget.starCount;
+    selected = widget.selected;
+
     super.initState();
   }
 
@@ -37,9 +34,9 @@ class _StarStatefulState extends State<StarStateful> {
           onTap: () {
             setState(() {
               if (selected) {
-                count--;
+                starCount--;
               } else {
-                count++;
+                starCount++;
               }
 
               selected = !selected;
@@ -47,10 +44,10 @@ class _StarStatefulState extends State<StarStateful> {
           },
           child: Icon(
             selected ? Icons.star : Icons.star_outline,
-            color: starColor,
+            color: Colors.red,
           ),
         ),
-        Text("$count"),
+        Text("$starCount"),
       ],
     );
   }

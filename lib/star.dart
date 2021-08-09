@@ -1,14 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Star extends StatelessWidget {
-  final Color starColor;
-  final String text;
+  final int starCount;
+  final bool selected;
 
-  const Star({
-    required this.starColor,
-    required this.text,
-  });
+  Star(this.starCount, this.selected);
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +12,10 @@ class Star extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Icon(
-          Icons.star,
-          color: starColor,
+          selected ? Icons.star : Icons.star_outline,
+          color: Colors.red,
         ),
-        Text(text),
+        Text("$starCount"),
       ],
     );
   }
