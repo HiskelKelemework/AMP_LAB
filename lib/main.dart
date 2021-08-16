@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:myapp/screens/first_screen.dart';
 import 'package:myapp/screens/lake_view_screen.dart';
 import 'package:myapp/screens/second_screen.dart';
+import 'package:myapp/screens/todo_detail.dart';
+import 'package:myapp/screens/todo_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,10 +13,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/first",
+      initialRoute: TodoScreen.routeName,
       routes: {
-        "/first": (BuildContext context) => FirstScreen(),
-        "/second": (BuildContext context) => SecondScreen(),
+        FirstScreen.routeName: (BuildContext context) => FirstScreen(),
+        SecondScreen.routeName: (BuildContext context) => SecondScreen(),
+        TodoScreen.routeName: (BuildContext context) => TodoScreen(),
+        TodoDetail.routeName: (BuildContext context) => TodoDetail(),
       },
     );
   }

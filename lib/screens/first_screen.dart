@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:myapp/screens/second_screen.dart';
 
 class FirstScreen extends StatelessWidget {
+  static const String routeName = "/first";
+
   const FirstScreen({Key? key}) : super(key: key);
 
   @override
@@ -15,7 +17,7 @@ class FirstScreen extends StatelessWidget {
           onPressed: () async {
             final result = await Navigator.pushNamed(
               context,
-              "/second",
+              SecondScreen.routeName,
               arguments: "From first screen",
             );
 

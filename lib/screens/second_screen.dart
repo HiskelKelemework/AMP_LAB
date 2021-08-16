@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SecondScreen extends StatelessWidget {
+  static const String routeName = "/second";
+
   const SecondScreen({Key? key}) : super(key: key);
 
   @override
