@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/providers/auth_provider.dart';
 import 'package:myapp/star_stateful.dart';
+import 'package:provider/provider.dart';
 
 class LakeViewScreen extends StatelessWidget {
   const LakeViewScreen({Key? key}) : super(key: key);
@@ -90,6 +92,8 @@ class LakeViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
     return Scaffold(
       body: Column(
         children: [
@@ -104,6 +108,13 @@ class LakeViewScreen extends StatelessWidget {
                 _buildTextRow(),
                 _buildIconRow(),
                 _buildText(),
+                SizedBox(height: 20.0),
+                ElevatedButton(
+                  onPressed: () {
+                    authProvider.logout();
+                  },
+                  child: Text("Log out"),
+                )
               ],
             ),
           )

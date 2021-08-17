@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   static const String routeName = "/login";
@@ -11,6 +13,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
     final inputBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(100.0),
     );
@@ -66,7 +70,7 @@ class LoginScreen extends StatelessWidget {
                     final email = emailController.text;
                     final password = passwordController.text;
                     print("email is $email and password is $password");
-
+                    authProvider.login();
                     // login here.
                   },
                   child: Container(
