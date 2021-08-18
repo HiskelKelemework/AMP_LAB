@@ -1,57 +1,59 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/providers/star_provider.dart';
+import 'package:provider/provider.dart';
 
-class StarStateful extends StatefulWidget {
+class StarStateful extends StatelessWidget {
   final Color starColor;
   final int count;
 
-  const StarStateful({
+  StarStateful({
     required this.starColor,
     required this.count,
   });
 
   @override
-  _StarStatefulState createState() {
-    return _StarStatefulState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<StarProvider>(
+      create: (context) => StarProvider(count, false),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          LayoutBuilder(builder: (ctx, _) {
+            final starProvider = Provider.of<StarProvider>(ctx, listen: false);
+
+            return GestureDetector(onTap: () {
+              starProvider.toggle();
+            }, child: Consumer<StarProvider>(
+              builder: (context, starState, _) {
+                return Icon(
+                  starState.selected ? Icons.star : Icons.star_outline,
+                  color: starColor,
+                );
+              },
+            ));
+          }),
+          Consumer<StarProvider>(
+            builder: (context, starState, _) {
+              final count = starState.starCount;
+
+              return Text("$count");
+            },
+          ),
+          TestWidget(),
+        ],
+      ),
+    );
   }
 }
 
-class _StarStatefulState extends State<StarStateful> {
-  late Color starColor;
-  late int count;
-  bool selected = false;
-
-  @override
-  void initState() {
-    starColor = widget.starColor;
-    count = widget.count;
-    super.initState();
-  }
+class TestWidget extends StatelessWidget {
+  const TestWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              if (selected) {
-                count--;
-              } else {
-                count++;
-              }
+    final starProvider = Provider.of<StarProvider>(context, listen: false);
 
-              selected = !selected;
-            });
-          },
-          child: Icon(
-            selected ? Icons.star : Icons.star_outline,
-            color: starColor,
-          ),
-        ),
-        Text("$count"),
-      ],
-    );
+    return Text(" Some text ${starProvider.starCount}");
   }
 }
