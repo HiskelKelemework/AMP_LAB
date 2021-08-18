@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/star_stateful.dart';
+import 'package:myapp/blocs/screens/color_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,13 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: SafeArea(
-          child: Center(
-            child: StarStateful(starColor: Colors.blue, count: 45),
-          ),
-        ),
-      ),
+      home: ColorScreen(),
     );
   }
 }
