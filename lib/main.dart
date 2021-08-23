@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/screens/color_screen.dart';
 import 'package:myapp/star.dart';
 import 'package:myapp/star_stateful.dart';
 
@@ -107,25 +108,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          body: Column(
-        children: [
-          Image.asset("assets/lake.jpg"),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 30.0,
-              vertical: 20.0,
-            ),
-            child: Column(
-              children: [
-                _buildTextRow(),
-                _buildIconRow(),
-                _buildText(),
-              ],
-            ),
-          )
-        ],
-      )),
+      home: ColorScreen(),
     );
   }
 }
