@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             ],
           ),
         ),
-        StarStateful(starColor: Colors.blue, count: 42),
+        Star(starColor: Colors.blue, starCount: 42),
       ],
     );
   }

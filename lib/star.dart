@@ -1,26 +1,45 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/providers/start_provider.dart';
+import 'package:provider/provider.dart';
 
 class Star extends StatelessWidget {
   final Color starColor;
-  final String text;
+  final int starCount;
 
-  const Star({
-    required this.starColor,
-    required this.text,
-  });
+  late StartProvider startProvider;
+
+  Star({required this.starColor, required this.starCount}) {
+    startProvider = StartProvider(false, starCount);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(
-          Icons.star,
-          color: starColor,
-        ),
-        Text(text),
-      ],
+    return ChangeNotifierProvider<StartProvider>(
+      create: (context) => startProvider,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GestureDetector(
+            onTap: () {
+              startProvider.toggle();
+            },
+            child: Consumer<StartProvider>(
+              builder: (context, state, _) {
+                final filled = state.isSelected;
+
+                return Icon(
+                  filled ? Icons.star : Icons.star_outline,
+                  color: starColor,
+                );
+              },
+            ),
+          ),
+          Consumer<StartProvider>(builder: (context, state, _) {
+            return Text("${state.starCount}");
+          }),
+        ],
+      ),
     );
   }
 }
