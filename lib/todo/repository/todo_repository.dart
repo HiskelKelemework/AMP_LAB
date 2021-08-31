@@ -1,4 +1,3 @@
-import 'package:myapp/todo/data_provider/todo_db_provider.dart';
 import 'package:myapp/todo/data_provider/todo_provider.dart';
 import 'package:myapp/todo/models/todo.dart';
 

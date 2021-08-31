@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/color/blocs/color_bloc.dart';
-import 'package:myapp/color/blocs/color_event.dart';
-import 'package:myapp/color/blocs/color_state.dart';
 
 class ColorScreen extends StatelessWidget {
   const ColorScreen({Key? key}) : super(key: key);
